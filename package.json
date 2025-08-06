@@ -22,6 +22,7 @@
     "tailwindcss": "^4.1.4"
   },
   "devDependencies": {
+    "@flydotio/dockerfile": "^0.7.10",
     "babel-loader": "^8.0.0",
     "css-loader": "^5.0.0",
     "html-webpack-plugin": "^5.0.0",
