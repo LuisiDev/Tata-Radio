@@ -169,3 +169,17 @@ select:hover ~ #cursor-border {
     fill: #ffffff;
   }
 }
+
+/* Transition login form */
+.slide-in {
+    animation: slide-in 0.5s ease-in-out;
+}
+
+@keyframes slide-in {
+    0% {
+        transform: translateX(25%);
+    }
+    100% {
+        transform: translateX(0);
+    }
+}

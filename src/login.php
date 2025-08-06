@@ -11,14 +11,13 @@ if (isset($_SESSION['user'])) {
 ?>
 
 <!DOCTYPE html>
-<html lang="es" data-theme="dark" class="bg-gray-100 text-gray-900 dark:bg-gray-900 dark:text-white">
+<html lang="es" dir="ltr" data-theme="dark">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Control de accesos</title>
-    <link rel="stylesheet" href="./css/index.css">
-    <link rel="stylesheet" href="./css/output.css">
+    <link rel="stylesheet" href="styles/main.css">
     <link rel="manifest" href="./manifest.json">
     <link rel="icon" href="./assets/web/favicon.ico" type="image/x-icon">
     <style>
@@ -29,7 +28,7 @@ if (isset($_SESSION['user'])) {
     </style>
 </head>
 
-<body>
+<body class="bg-gray-50 dark:bg-gray-900">
     <div id="cursor" class="bg-gray-900 dark:fill-white dark:bg-white dark:text-white"></div>
     <div id="cursor-border" class="border-2 border-solid border-gray-900 dark:border-white"></div>
 
@@ -38,17 +37,16 @@ if (isset($_SESSION['user'])) {
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-2">
             <div class="flex justify-center items-start h-screen">
                 <div class="p-8 w-[33rem]">
-                    <div
-                        class="flex z-40 items-center mt-7 mb-10 md:mb-20 lg:mb-34">
-                        <svg class="w-18" viewBox="0 0 350 350" fill="none"
-                            xmlns="http://www.w3.org/2000/svg">
-                            <path d="M215 175L155 209.641V140.359L215 175Z" fill="white" />
-                            <path d="M119.69 270.402L119.69 79.8767L284.69 175.139L119.69 270.402Z" stroke="white"
-                                stroke-width="15" />
-                            <path d="M95 313.564L95 36.4355L335.001 175L95 313.564Z" stroke="white" stroke-width="15" />
+                    <div class="flex z-40 justify-center items-center mt-7 mb-10 md:mb-20 lg:mb-34">
+                        <svg class="w-18" viewBox="0 0 350 350" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path class="fill-gray-900 dark:fill-white" d="M215 175L155 209.641V140.359L215 175Z" />
+                            <path class="stroke-gray-700 dark:stroke-white"
+                                d="M119.69 270.402L119.69 79.8767L284.69 175.139L119.69 270.402Z" stroke-width="15" />
+                            <path class="stroke-gray-700 dark:stroke-white"
+                                d="M95 313.564L95 36.4355L335.001 175L95 313.564Z" stroke-width="15" />
                         </svg>
 
-                        <p class="w-28">TCS Radio</p>
+                        <p class="w-28 text-lg ml-2 text-gray-700 dark:text-gray-200">TCS Radio</p>
                     </div>
 
                     <div class="hidden justify-center flex" id="loginValidation" role="alert">
@@ -62,35 +60,97 @@ if (isset($_SESSION['user'])) {
                         <form id="loginForm" class="slide-in" method="POST" autocomplete="off">
                             <div>
 
-                                <h2 class="text-2xl font-bold mb-4">Iniciar sesión</h2>
+                                <h2 class="text-gray-800 dark:text-gray-100 text-2xl font-bold mb-4">Log In</h2>
                                 <div class="mb-4">
                                     <label for="username"
-                                        class="block text-gray-700 dark:text-gray-200 text-sm mb-2">Usuario</label>
-                                    <input type="text" id="usuario" name="username" autocomplete="off"
-                                        class="w-full p-2.5 border bg-gray-100 border-gray-300 text-gray-700 dark:border-gray-600 dark:text-white rounded-lg focus:outline-none focus:ring-[#903F98] focus:border-[#903F98] dark:bg-gray-700 dark:placeholder-gray-500"
+                                        class="block text-gray-700 dark:text-gray-200 text-sm mb-2">Email</label>
+                                    <input type="email" id="usuario" name="username" autocomplete="off"
+                                        class="w-full p-2.5 border bg-gray-50 border-gray-300 text-gray-700 dark:border-gray-600 dark:text-white rounded-lg focus:outline-none focus:ring-gray-600 focus:border-gray-600 dark:bg-gray-700 dark:placeholder-gray-500"
                                         required>
                                 </div>
                                 <div class="mb-4">
                                     <label for="password"
-                                        class="block text-gray-700 dark:text-gray-200 text-sm mb-2">Contraseña</label>
+                                        class="block text-gray-700 dark:text-gray-200 text-sm mb-2">Password</label>
                                     <input type="password" id="password" name="password" autocomplete="off"
-                                        class="w-full p-2.5 border bg-gray-100 border-gray-300 text-gray-700 dark:border-gray-600 dark:text-white rounded-lg focus:outline-none focus:ring-[#903F98] focus:border-[#903F98] dark:bg-gray-700 dark:placeholder-gray-500"
+                                        class="w-full p-2.5 border bg-gray-50 border-gray-300 text-gray-700 dark:border-gray-600 dark:text-white rounded-lg focus:outline-none focus:ring-gray-600 focus:border-gray-600 dark:bg-gray-700 dark:placeholder-gray-500"
                                         required>
                                 </div>
                                 <div class="flex justify-between items-center mb-4">
                                     <div class="flex items-center">
                                         <input type="checkbox" id="rememberUser" value="true"
-                                            class="w-4 h-4 text-[#903F98] bg-white border-gray-300 rounded focus:ring-[#903F98] focus:ring-2">
+                                            class="w-4 h-4 text-gray-900 bg-white border-gray-300 rounded focus:ring-gray-900 focus:ring-2">
                                         <label for="rememberUser"
-                                            class="ms-2 text-xs font-normal text-gray-900 dark:text-gray-50 cursor-pointer">Recordar
-                                            contraseña</label>
+                                            class="ms-2 text-xs font-normal text-gray-900 dark:text-gray-50 cursor-pointer">Remember
+                                            me</label>
                                     </div>
-                                    <a class="text-xs text-[#903F98] hover:underline cursor-pointer"
-                                        onclick="showForgotPasswordForm()">¿Olvidaste tu contraseña?</a>
+                                    <a class="text-xs text-gray-700 dark:text-gray-50 hover:underline cursor-pointer"
+                                        onclick="showForgotPasswordForm()">Lost your password?</a>
                                 </div>
                                 <button type="submit"
-                                    class="w-full bg-gray-700 text-white py-2 px-4 rounded hover:bg-[#7c4481] focus:ring-purple-300 cursor-pointer">Iniciar
-                                    sesión</button>
+                                    class="w-full bg-gray-700 text-white py-2 px-4 rounded hover:bg-gray-900 focus:ring-gray-300 cursor-pointer">Log
+                                    In</button>
+                                <div class="my-4 flex items-center justify-between">
+                                    <span class="border-b border-gray-300 w-1/3 lg:w-1/4"></span>
+                                    <span class="text-xs text-center text-gray-500 uppercase">Or</span>
+                                    <span class="border-b border-gray-300 w-1/3 lg:w-1/4"></span>
+                                </div>
+                                <button type="button" onclick="showRegistrationForm()"
+                                    class="w-full bg-gray-700 text-white py-2 px-4 rounded hover:bg-gray-900 focus:ring-gray-300 cursor-pointer">Register</button>
+                            </div>
+                        </form>
+
+                        <form id="registrationForm" style="display: none;" class="slide-in" method="POST"
+                            autocomplete="off">
+                            <div>
+
+                                <h2 class="text-gray-800 dark:text-gray-100 text-2xl font-bold mb-4">Registration</h2>
+                                <div class="mb-4 grid grid-cols-1 lg:grid-cols-2 gap-4">
+                                    <div>
+                                        <label for="username"
+                                            class="block text-gray-700 dark:text-gray-200 text-sm mb-2">Name(s)</label>
+                                        <input type="text" id="nombre" name="name" autocomplete="off"
+                                            class="w-full p-2.5 border bg-gray-50 border-gray-300 text-gray-700 dark:border-gray-600 dark:text-white rounded-lg focus:outline-none focus:ring-gray-600 focus:border-gray-600 dark:bg-gray-700 dark:placeholder-gray-500"
+                                            required>
+                                    </div>
+                                    <div>
+                                        <label for="username"
+                                            class="block text-gray-700 dark:text-gray-200 text-sm mb-2">Surnames</label>
+                                        <input type="text" id="apellidos" name="surname" autocomplete="off"
+                                            class="w-full p-2.5 border bg-gray-50 border-gray-300 text-gray-700 dark:border-gray-600 dark:text-white rounded-lg focus:outline-none focus:ring-gray-600 focus:border-gray-600 dark:bg-gray-700 dark:placeholder-gray-500"
+                                            required>
+                                    </div>
+                                </div>
+                                <div class="mb-4">
+                                    <label for="username"
+                                        class="block text-gray-700 dark:text-gray-200 text-sm mb-2">Email</label>
+                                    <input type="email" id="email" name="email" autocomplete="off"
+                                        class="w-full p-2.5 border bg-gray-50 border-gray-300 text-gray-700 dark:border-gray-600 dark:text-white rounded-lg focus:outline-none focus:ring-gray-600 focus:border-gray-600 dark:bg-gray-700 dark:placeholder-gray-500"
+                                        required>
+                                </div>
+                                <div class="mb-4">
+                                    <label for="password"
+                                        class="block text-gray-700 dark:text-gray-200 text-sm mb-2">Password</label>
+                                    <input type="password" id="password" name="password" autocomplete="off"
+                                        class="w-full p-2.5 border bg-gray-50 border-gray-300 text-gray-700 dark:border-gray-600 dark:text-white rounded-lg focus:outline-none focus:ring-gray-600 focus:border-gray-600 dark:bg-gray-700 dark:placeholder-gray-500"
+                                        required>
+                                </div>
+                                <div class="mb-4">
+                                    <label for="password"
+                                        class="block text-gray-700 dark:text-gray-200 text-sm mb-2">Confirm password</label>
+                                    <input type="password" id="password" name="password" autocomplete="off"
+                                        class="w-full p-2.5 border bg-gray-50 border-gray-300 text-gray-700 dark:border-gray-600 dark:text-white rounded-lg focus:outline-none focus:ring-gray-600 focus:border-gray-600 dark:bg-gray-700 dark:placeholder-gray-500"
+                                        required>
+                                </div>
+                                <button type="submit"
+                                    class="w-full bg-gray-700 text-white py-2 px-4 rounded hover:bg-gray-900 focus:ring-gray-300 cursor-pointer">Create
+                                    account</button>
+                                <div class="my-4 flex items-center justify-between">
+                                    <span class="border-b border-gray-300 w-1/3 lg:w-1/4"></span>
+                                    <span class="text-xs text-center text-gray-500 uppercase">Or</span>
+                                    <span class="border-b border-gray-300 w-1/3 lg:w-1/4"></span>
+                                </div>
+                                <button type="button" onclick="showRegistrationForm()"
+                                    class="w-full bg-gray-700 text-white py-2 px-4 rounded hover:bg-gray-900 focus:ring-gray-300 cursor-pointer">Login</button>
                             </div>
                         </form>
 
@@ -99,36 +159,35 @@ if (isset($_SESSION['user'])) {
                     <div class="mx-auto w-full px-4 py-8 sm:px-6 lg:px-8">
 
                         <form id="forgotPasswordForm" style="display: none;" class="slide-in" method="POST">
-                            <h2 class="text-2xl font-bold mb-4">Recuperar contraseña</h2>
+                            <h2 class="text-gray-800 dark:text-gray-100 text-2xl font-bold mb-4">Recover password</h2>
                             <div class="mb-4">
-                                <label for="email" class="block text-gray-700 dark:text-gray-200 text-sm mb-2">Correo
-                                    electrónico:</label>
+                                <label for="email"
+                                    class="block text-gray-700 dark:text-gray-200 text-sm mb-2">Email:</label>
                                 <input type="email" id="recoveryEmail" name="email"
-                                    class="w-full p-2.5 border border-gray-300 dark:border-gray-600 dark:text-white rounded-lg focus:outline-none focus:ring-[#903F98] focus:border-[#903F98] dark:bg-gray-700 dark:placeholder-gray-500"
+                                    class="w-full p-2.5 border bg-gray-50 border-gray-300 text-gray-700 dark:border-gray-600 dark:text-white rounded-lg focus:outline-none focus:ring-gray-600 focus:border-gray-600 dark:bg-gray-700 dark:placeholder-gray-500"
                                     value=""
                                     pattern="[a-zA-Z0-9]+([.][a-zA-Z0-9]+)*@[a-zA-Z0-9]+\.[a-zA-Z]{2,4}(\.[a-zA-Z]{2})?"
                                     required>
                             </div>
                             <div class="flex justify-between items-center mb-4">
-                                <a class="text-xs text-[#903F98] hover:underline cursor-pointer"
-                                    onclick="showLoginForm()">Iniciar sesión</a>
+                                <a class="text-xs text-gray-700 dark:text-gray-50 hover:underline cursor-pointer"
+                                    onclick="showLoginForm()">Go to Login</a>
                             </div>
                             <button type="submit" name="send" id="recuperacionSubmitBtn"
-                                class="w-full bg-gray-700 text-white py-2 px-4 rounded hover:bg-[#7c4481] cursor-pointer">Recuperar
-                                contraseña</button>
+                                class="w-full bg-gray-700 text-white py-2 px-4 rounded hover:bg-gray-900 focus:ring-gray-300 cursor-pointer">Recover</button>
                         </form>
 
                     </div>
 
                     <div class="flex justify-center items-center mt-16 lg:mt-24 slide-in">
-                        <a href="#" class="text-sm font-light text-[#903F98] hover:underline">Términos y
-                            condiciones</a>
+                        <a href="#" class="text-sm font-light text-gray-700 dark:text-gray-50 hover:underline">Terms &
+                            conditions</a>
                     </div>
 
                     <div class="flex justify-center items-center mt-4 lg:mt-4 slide-in">
                         <button type="button" data-animation="circle-blur-top-left"
-                            class="cursor-pointer theme-toggle text-sm font-light text-[#903F98] hover:underline">Modo
-                            oscuro</button>
+                            class="cursor-pointer theme-toggle text-sm font-light text-gray-700 dark:text-gray-50 hover:underline">Dark
+                            mode</button>
                     </div>
                 </div>
 
@@ -138,8 +197,11 @@ if (isset($_SESSION['user'])) {
                     <div class="h-full">
                         <div class="transition-opacity duration-1000">
                             <div class="flex h-dvh justify-center p-6">
-                                <video autoplay loop muted playsinline class="mask1 rounded-r-4xl p-5 relative w-full object-cover object-center">
-                                    <source src="https://videos.pexels.com/video-files/29485423/12691871_1920_1080_30fps.mp4" type="video/mp4">
+                                <video autoplay loop muted playsinline
+                                    class="mask1 rounded-r-4xl p-5 relative w-full object-cover object-center">
+                                    <source
+                                        src="https://videos.pexels.com/video-files/29485423/12691871_1920_1080_30fps.mp4"
+                                        type="video/mp4">
                                     Tu navegador no soporta la reproducción de video.
                                 </video>
                             </div>
@@ -377,6 +439,27 @@ if (isset($_SESSION['user'])) {
                 document.getElementById('recuperacionSubmitBtn').innerHTML = 'Recuperar contraseña';
             }
         });
+
+        // Funciones para mostrar/ocultar formularios
+        function showRegistrationForm() {
+            document.getElementById("loginForm").style.display = "none";
+            document.getElementById("forgotPasswordForm").style.display = "none";
+            document.getElementById("registrationForm").style.display = "block";
+        }
+
+        function showLoginForm() {
+            document.getElementById("loginForm").style.display = "block";
+            document.getElementById("forgotPasswordForm").style.display = "none";
+            document.getElementById("registrationForm").style.display = "none";
+        }
+
+        function showForgotPasswordForm() {
+            document.getElementById("forgotPasswordForm").style.display = "block";
+            document.getElementById("forgotPasswordForm").classList.add("slide-in");
+            document.getElementById("loginForm").style.display = "none";
+            document.getElementById("registrationForm").style.display = "none";
+        }
+
     </script>
     <script src="../dist/bundle.js"></script>
 </body>

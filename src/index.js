@@ -3,6 +3,7 @@ import 'flowbite';
 import 'flowbite/dist/flowbite.min.css';
 import './styles/main.css';
 import './styles/input.css';
+import './styles/smooth-scroll.css';
 import './canvas.js';
 import './infinite-scroll.js';
 import './cursor.js';
@@ -11,6 +12,8 @@ import './animation-toggle.js';
 import 'prismjs';
 import 'prismjs/themes/prism.css';
 import './animation-logo.js';
+import './smooth-scroll.js';
+import './login.js';
 
 // Aquí puedes agregar la lógica de tu portafolio
 // document.addEventListener('DOMContentLoaded', () => {
